@@ -26,6 +26,11 @@ Cadastrar, editar, listar e excluir compras informando o produto e clientes envo
  
  1.3 - execute npm install.
  
+Pronto. Tudo deverá estar pronto para você desenvolver.
+
+Na pasta execute o comando php artisan serve
+
+Acesse o link http://localhost:8000/
 
 Se tiver qualquer dúvida quanto à configuração pode me procurar.
 
