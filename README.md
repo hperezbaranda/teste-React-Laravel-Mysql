@@ -18,7 +18,9 @@ Cadastrar, editar, listar e excluir compras informando o produto e clientes envo
  
  - Instale o Laravel e as dependências do projeto utilizando NPM.
  
- Dica: Após instalar no Node.js você deve instalar o Laravel e então ir na pasta do projeto e instalar as dependências, para isso execute npm install. Existem tutoriais na internet ensinando como fazer, mas também estou à disposição para ajudar, se necessário.
+ Dica 1: Você vai ver na lista de requirements que precisa ter o PHP instalado, não tiver ainda, instale o PHP. Você pode instalar o XAMPP com PHP 7.1 se achar mais fácil.
+ 
+ Dica 2: Após instalar no Node.js você deve instalar o Laravel e então ir na pasta do projeto e instalar as dependências, para isso execute npm install. Existem tutoriais na internet ensinando como fazer, mas também estou à disposição para ajudar, se necessário.
 
 Se tiver qualquer dúvida quanto à configuração pode me procurar.
 
