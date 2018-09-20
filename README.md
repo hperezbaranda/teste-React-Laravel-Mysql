@@ -18,9 +18,12 @@ Cadastrar, editar, listar e excluir compras informando o produto e clientes envo
  
  - Instale o Laravel e as dependências do projeto utilizando NPM.
  
- 1.1 - Para instalar o Laravel globalmente: composer global require "laravel/installer".
- 1.2 - Instalar as dependências para o Laravel. Dentro da pasta do projeto (onde tem o arquivo composer.json) execute composer install.
+ 1.1 - Para instalar o Laravel globalmente: composer global require "laravel/installer";
+ 
+ 1.2 - Instalar as dependências para o Laravel. Dentro da pasta do projeto (onde tem o arquivo composer.json) execute composer install;
+ 
  1.3 - execute npm install.
+ 
  
  Dica 1: Você vai ver na lista de requirements que precisa ter o PHP instalado, se não tiver ainda, instale o PHP. Você pode instalar o XAMPP com PHP 7.1 se achar mais fácil.
  
