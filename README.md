@@ -28,7 +28,7 @@ Cadastrar, editar, listar e excluir compras informando o produto e clientes envo
  
 Pronto. Tudo deverá estar pronto para você desenvolver.
 
-Na pasta execute o comando php artisan serve
+Na pasta do projeto execute o comando php artisan serve
 
 Acesse o link http://localhost:8000/
 
@@ -37,7 +37,7 @@ Se tiver qualquer dúvida quanto à configuração pode me procurar.
 2) Conhecendo o banco de dados:
 
  - Criamos um banco de dados no nosso servidor e um usuário para você acessá-lo. O Banco de dados é em MySQL.
- Seguem os dados para accesá-lo:
+ Seguem os dados para acessá-lo:
  
  Host: diana.cou24pqha67b.us-east-1.rds.amazonaws.com
  Port: 3306
