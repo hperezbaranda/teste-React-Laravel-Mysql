@@ -1,7 +1,7 @@
 Teste de seleção para Dinni Soluções
 
 
-(CANDIDATO), por favor siga as instruções a seguir para realizar o teste.
+Hector, por favor siga as instruções a seguir para realizar o teste.
 
 O teste consiste em criar uma Aplicação Web utilizando Laravel e algum dos frameworks: Vue.js, Angular ou React.
 
@@ -39,11 +39,11 @@ Se tiver qualquer dúvida quanto à configuração pode me procurar.
  - Criamos um banco de dados no nosso servidor e um usuário para você acessá-lo. O Banco de dados é em MySQL.
  Seguem os dados para acessá-lo:
  
- Host: diana.cou24pqha67b.us-east-1.rds.amazonaws.com
+ Host: stark-dev.cou24pqha67b.us-east-1.rds.amazonaws.com
  Port: 3306
- Schema: (BANCO CANDIDATO)
- Username: (CANDIDATO)
- password: (SENHA CANDIDATO)
+ Schema: teste_hector
+ Username: hectorperez
+ password: senhahectorperez
  
  Conecte no banco de dados e veja as tabelas que foram criadas para ter uma ideia de como deve ser a aplicação.
  
@@ -97,4 +97,4 @@ Para o front-end gostaríamos que você utilizasse um dos frameworks: Vue.js, An
  
  Bom trabalho!
  
- Leo (leo@dinnisoft.com.br)
+ Leo (eduardo@dinnisoft.com.br)
