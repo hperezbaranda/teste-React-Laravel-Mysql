@@ -97,4 +97,4 @@ Para o front-end gostaríamos que você utilizasse um dos frameworks: Vue.js, An
  
  Bom trabalho!
  
- Leo (eduardo@dinnisoft.com.br)
+ Eduardo (eduardo@dinnisoft.com.br)
