@@ -9,12 +9,14 @@ class ClientesController extends Controller
 {
     public function index() {
         echo 'index';
+       
      }
      public function create() {
         echo 'create';
      }
      public function store(Request $request) {
         echo 'store';
+        return \App\Clientes::create($request->all());
      }
      public function show($id) {
         echo 'show';
