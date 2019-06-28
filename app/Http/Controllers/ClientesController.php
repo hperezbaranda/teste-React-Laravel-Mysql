@@ -9,7 +9,7 @@ class ClientesController extends Controller
 {
     public function index() {
         echo 'index';
-       
+        return \App\Clientes::all();
      }
      public function create() {
         echo 'create';
@@ -19,7 +19,7 @@ class ClientesController extends Controller
         return \App\Clientes::create($request->all());
      }
      public function show($id) {
-        echo 'show';
+        echo $id;
      }
      public function edit($id) {
         echo 'edit';
