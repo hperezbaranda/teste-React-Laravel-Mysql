@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Produtos;
+use App\Clientes;
 
 class ClientesController extends Controller
 {
     public function index() {
         echo 'index';
-        return \App\Clientes::all();
+        return Clientes::all();
      }
      public function create() {
         echo 'create';
      }
      public function store(Request $request) {
         echo 'store';
-        return \App\Clientes::create($request->all());
+        return Clientes::create($request->all());
      }
      public function show($id) {
         echo $id;
