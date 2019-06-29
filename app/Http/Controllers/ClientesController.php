@@ -17,7 +17,7 @@ class ClientesController extends Controller
         return Clientes::create($request->all());
      }
      public function show($id) {
-        echo $id;
+      return Clientes::findOrFail($id);
      }
      public function edit($id) {
         echo 'edit';
