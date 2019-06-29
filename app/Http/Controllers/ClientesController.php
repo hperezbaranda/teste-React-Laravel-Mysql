@@ -7,15 +7,13 @@ use App\Clientes;
 
 class ClientesController extends Controller
 {
-    public function index() {
-        echo 'index';
+     public function index() {
         return Clientes::all();
      }
      public function create() {
         echo 'create';
      }
      public function store(Request $request) {
-        echo 'store';
         return Clientes::create($request->all());
      }
      public function show($id) {
@@ -25,9 +23,20 @@ class ClientesController extends Controller
         echo 'edit';
      }
      public function update(Request $request, $id) {
-        echo 'update';
+        $cliente = Clientes::find($id);
+
+        $cliente->nome = $request->nome;
+        $cliente->sobrenome = $request->sobrenome;
+        $cliente->cpf = $request->cpf;
+        $cliente->email = $request->email;
+        $cliente->data_nascimento = $request->data_nascimento;
+
+        $cliente->save();
+
+        return $cliente->id;
      }
      public function destroy($id) {
-        echo 'destroy';
+        Clientes::destroy($id);
+        return $id;
      }
 }

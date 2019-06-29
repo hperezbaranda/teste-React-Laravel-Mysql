@@ -35,7 +35,7 @@ class ProdutosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Produtos::create($request->all());
     }
 
     /**
@@ -46,7 +46,7 @@ class ProdutosController extends Controller
      */
     public function show($id)
     {
-        //
+        return Produtos::findOrFail($id);
     }
 
     /**
@@ -68,8 +68,18 @@ class ProdutosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {               
+        $produto = Produtos::find($id);
+
+        $produto->nome = $request->nome;
+        $produto->descricao = $request->descricao;
+        $produto->unidade = $request->unidade;
+        $produto->quantidade = $request->quantidade;
+        $produto->preco = $request->preco;
+
+        $produto->save();
+
+        return $produto->id;
     }
 
     /**
@@ -80,6 +90,7 @@ class ProdutosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Produtos::destroy($id);
+        return $id;
     }
 }
