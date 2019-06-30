@@ -1,0 +1,41 @@
+.card{
+    border: none;
+    border-radius: 8px;
+}
+.Cliente-Card{
+    max-width: 396px;
+    max-height: 110px;
+    margin-top: 10px;
+    background: linear-gradient(to right, #a74cf2,#617bfb) ;
+    text-decoration: black;
+    
+}
+.Avatar{
+    margin: 10;
+    width: 60;
+    height: 60;
+}
+
+.link{
+    color: black;
+}
+
+.link:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.Cliente-Card-Info {
+    padding-left: 0;
+    padding-right: 44px;
+}
+.Cliente-Card-Info h1{
+    font-size: 23px;
+}
+
+.Cliente-Card-Info p{
+    font-size: 11px;
+}
+.root {
+    margin-top: 20px;
+}
