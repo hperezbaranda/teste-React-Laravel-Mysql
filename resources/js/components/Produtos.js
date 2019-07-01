@@ -20,14 +20,20 @@ export default class Produtos extends Component {
             produtos: []
         }
         this.deleteClick = this.deleteClick.bind(this);
+        this.getData = this.getData.bind(this);
     }
-    componentWillMount() {
 
-        Axios.get('/api/produtos').then(Response => {
+    async getData(){
+        await Axios.get('/api/produtos').then(Response => {
             this.setState({
                 produtos: Response.data
             })
         })
+    }
+ 
+    componentDidMount() {
+        this.getData();
+        this.props.setForm(2);
     }
 
     render() {

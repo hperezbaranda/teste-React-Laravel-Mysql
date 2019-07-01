@@ -20,15 +20,20 @@ export default class Clientes extends Component {
             clientes: []
         }
         this.deleteClick = this.deleteClick.bind(this);
+        this.getData = this.getData.bind(this);
     }
-    componentWillMount() {
-        Axios.get('/api/clientes').then(Response => {
+    async getData(){
+        await Axios.get('/api/clientes').then(Response => {
             this.setState({
                 clientes: Response.data
             });
         })
     }
-   
+    componentDidMount() {
+        this.getData();
+        this.props.setForm(1);
+    }
+    
     render() {
         return (
             <div className="container">
