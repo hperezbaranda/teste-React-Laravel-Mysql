@@ -6,16 +6,18 @@ import { BrowserRouter, Link, Route } from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import ClientForm from './components/ClientForm';
-import { log } from 'util';
+import Form from './components/Form';
 
 export default class Index extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            show: false
+            show: false,
+            form:""
         }
         this.listElemet = this.listElemet.bind(this)
+        // this.setForm = this.setForm.bind(this)
     }
 
     listElemet() {
@@ -23,7 +25,7 @@ export default class Index extends Component {
         this.setState({
             show: true
         })
-        
+                
     }
 
     noListElement() {
@@ -33,15 +35,23 @@ export default class Index extends Component {
         })
         
     }
- 
+    setForm(value){
+        this.form = value
+        console.log(value);
+        // this.setState({
+        // //     form: value
+        //     otro:value
+        // })
         
+    }
+         
     render() {
         return (
             <div className="container">
                 <BrowserRouter>
                     <div className="row center">
                         <div className="card mx-auto Cliente-Card">
-                            <Link to="/clientes" className="link" onClick={() => this.listElemet()}>
+                            <Link to="/clientes" className="link" onClick={this.listElemet}>
                                 <div className="card-body">
                                     <div className="row center">
                                         <div className="col-md-6" >
@@ -79,9 +89,9 @@ export default class Index extends Component {
                         </div>
                     </div>
                     <div className="row center">
-                        <Route path="/clientes" exact component={Clientes} />
-                        <Route path="/produtos" component={Produtos} />
-                        <Route path="/add" component={ClientForm}/>
+                        <Route path="/clientes" exact component={(props) => <Clientes {...props} setForm ={this.setForm.bind(this)}/>} />
+                        <Route path="/produtos" component={() => <Produtos setForm = {this.setForm.bind(this)}/>} />
+                        <Route path="/add" component={(props) => <Form {...props} wishform ={this.form}/>}/>
                             
                     </div>
                     <div className="row center">

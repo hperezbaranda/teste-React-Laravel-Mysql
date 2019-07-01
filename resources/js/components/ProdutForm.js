@@ -10,7 +10,7 @@ import InputMask from 'react-input-mask'
 import Container from '@material-ui/core/Container';
 import Axios from 'axios';
 
-export default class ClientForm extends Component {
+export default class ProductForm extends Component {
 
     constructor(props) {
         super(props);
@@ -70,7 +70,7 @@ export default class ClientForm extends Component {
                         <LockOutlinedIcon />
                     </Avatar> */}
                     <Typography className="title" component="h1" variant="h5">
-                        Cadastrar Cliente
+                        Cadastrar Produtos
                     </Typography>
                     <form className={"form"} onSubmit={this.onSubmit} method="POST" ref={(form) => this.myFormRef = form} noValidate>
                         <Grid container spacing={2}>

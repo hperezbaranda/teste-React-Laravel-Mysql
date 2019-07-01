@@ -33,7 +33,7 @@ export default class Produtos extends Component {
  
     componentDidMount() {
         this.getData();
-        this.props.setForm(2);
+        this.props.setForm(0);
     }
 
     render() {
