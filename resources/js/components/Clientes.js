@@ -28,41 +28,40 @@ export default class Clientes extends Component {
             });
         })
     }
-
+   
     render() {
         return (
             <div className="container">
-                <div className="row center">
-                    <Paper className="root">
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Nome</TableCell>
-                                    <TableCell align="center">Sobrenome</TableCell>
-                                    <TableCell align="center">CPF</TableCell>
-                                    <TableCell align="center">Email</TableCell>
-                                    <TableCell align="center">Data Nascimento</TableCell>
-                                    <TableCell align="center">Acao</TableCell>
+                <Paper className="root">
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Nome</TableCell>
+                                <TableCell align="center">Sobrenome</TableCell>
+                                <TableCell align="center">CPF</TableCell>
+                                <TableCell align="center">Email</TableCell>
+                                <TableCell align="center">Data Nascimento</TableCell>
+                                <TableCell align="center">Acao</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {this.state.clientes.map(row => (
+                                <TableRow key={row.id}>
+                                    <TableCell component="th" scope="row">
+                                        {row.nome}
+                                    </TableCell>
+                                    <TableCell align="center">{row.sobrenome}</TableCell>
+                                    <TableCell align="center">{row.cpf}</TableCell>
+                                    <TableCell align="center">{row.email}</TableCell>
+                                    <TableCell align="center">{row.data_nascimento}</TableCell>
+                                    <TableCell align="center"> <IconButton aria-label="Delete" onClick={() => this.deleteClick(row.id)}>
+                                        <DeleteIcon />
+                                    </IconButton></TableCell>
                                 </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {this.state.clientes.map(row => (
-                                    <TableRow key={row.id}>
-                                        <TableCell component="th" scope="row">
-                                            {row.nome}
-                                        </TableCell>
-                                        <TableCell align="center">{row.sobrenome}</TableCell>
-                                        <TableCell align="center">{row.cpf}</TableCell>
-                                        <TableCell align="center">{row.email}</TableCell>
-                                        <TableCell align="center">{row.data_nascimento}</TableCell>
-                                        <TableCell align="center"> <IconButton aria-label="Delete" onClick={() => this.deleteClick(row.id)}>
-                                            <DeleteIcon />
-                                        </IconButton></TableCell>
-                                    </TableRow>
-                                ))}
+                            ))}
 
-                            </TableBody>
-                            {/* <TableFooter>
+                        </TableBody>
+                        {/* <TableFooter>
                         <TableRow>
                             <TablePagination
                                 colSpan={3}
@@ -79,18 +78,15 @@ export default class Clientes extends Component {
                             />
                         </TableRow>
                     </TableFooter> */}
-                        </Table>
-                    </Paper>
-                </div>
-                <div className="row">
-                    
-                </div>
+                    </Table>
+                </Paper>
+                <br/>
             </div >
         );
     }
 
-    deleteClick(id) {
-        Axios.delete(`/api/clientes/${id}`).then(Response => {
+    async deleteClick(id) {
+        await Axios.delete(`/api/clientes/${id}`).then(Response => {
             let filteredArray = this.state.clientes.filter(item => item.id !== id)
             this.setState({ clientes: filteredArray });
         });

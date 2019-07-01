@@ -17,9 +17,9 @@ export default class Produtos extends Component {
         super(props)
 
         this.state = {
-            produtos:[]
+            produtos: []
         }
-        this.deleteClick=this.deleteClick.bind(this);
+        this.deleteClick = this.deleteClick.bind(this);
     }
     componentWillMount() {
 
@@ -34,35 +34,35 @@ export default class Produtos extends Component {
         return (
             <div className="container">
                 <Paper className="root">
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Nome</TableCell>
-                            <TableCell align="center">Descrisao</TableCell>
-                            <TableCell align="center">Unidade</TableCell>
-                            <TableCell align="center">Quantidade</TableCell>
-                            <TableCell align="center">Preco</TableCell>
-                            <TableCell align="center">Acao</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {this.state.produtos.map(row => (
-                            <TableRow key={row.id}>
-                                <TableCell component="th" scope="row">
-                                    {row.nome}
-                                </TableCell>
-                                <TableCell align="center">{row.descricao}</TableCell>
-                                <TableCell align="center">{row.unidade}</TableCell>
-                                <TableCell align="center">{row.quantidade}</TableCell>
-                                <TableCell align="center">R$ {row.preco}</TableCell>
-                                <TableCell align="center"> <IconButton aria-label="Delete" onClick={() => this.deleteClick(row.id)}>
-                                    <DeleteIcon />
-                                </IconButton></TableCell>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Nome</TableCell>
+                                <TableCell align="center">Descrisao</TableCell>
+                                <TableCell align="center">Unidade</TableCell>
+                                <TableCell align="center">Quantidade</TableCell>
+                                <TableCell align="center">Preco</TableCell>
+                                <TableCell align="center">Acao</TableCell>
                             </TableRow>
-                        ))}
+                        </TableHead>
+                        <TableBody>
+                            {this.state.produtos.map(row => (
+                                <TableRow key={row.id}>
+                                    <TableCell component="th" scope="row">
+                                        {row.nome}
+                                    </TableCell>
+                                    <TableCell align="center">{row.descricao}</TableCell>
+                                    <TableCell align="center">{row.unidade}</TableCell>
+                                    <TableCell align="center">{row.quantidade}</TableCell>
+                                    <TableCell align="center">R$ {row.preco}</TableCell>
+                                    <TableCell align="center"> <IconButton aria-label="Delete" onClick={() => this.deleteClick(row.id)}>
+                                        <DeleteIcon />
+                                    </IconButton></TableCell>
+                                </TableRow>
+                            ))}
 
-                    </TableBody>
-                    {/* <TableFooter>
+                        </TableBody>
+                        {/* <TableFooter>
                         <TableRow>
                             <TablePagination
                                 colSpan={3}
@@ -79,16 +79,17 @@ export default class Produtos extends Component {
                             />
                         </TableRow>
                     </TableFooter> */}
-                </Table>
-            </Paper>
+                    </Table>
+                </Paper>
+                <br />
             </div >
         );
     }
 
-    deleteClick(id) {
-        Axios.delete(`/api/produtos/${id}`).then(Response =>{
+    async deleteClick(id) {
+      await Axios.delete(`/api/produtos/${id}`).then(Response => {
             let filteredArray = this.state.produtos.filter(item => item.id !== id)
-            this.setState({produtos: filteredArray});
+            this.setState({ produtos: filteredArray });
         });
     }
 }

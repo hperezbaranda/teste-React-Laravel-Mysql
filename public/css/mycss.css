@@ -20,9 +20,22 @@
     color: black;
 }
 
+.link:visited{
+    text-decoration: none;
+}
+
 .link:hover{
     text-decoration: none;
     color: black;
+}
+
+.addLink{
+    color: white;
+}
+
+.addLink:hover{
+    text-decoration: none;
+    color: white;
 }
 
 .Cliente-Card-Info {
@@ -38,4 +51,15 @@
 }
 .root {
     margin-top: 20px;
+}
+
+.paper {
+    display: 'flex';
+    flexDirection: 'column';
+    alignItems: 'center';
+    padding-top:35px;
+}
+
+.paper .title{
+    margin-bottom: 15px;
 }
