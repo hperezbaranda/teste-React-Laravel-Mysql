@@ -22,7 +22,7 @@ export default class Clientes extends Component {
         this.deleteClick = this.deleteClick.bind(this);
         this.getData = this.getData.bind(this);
     }
-    async getData(){
+    async getData() {
         await Axios.get('/api/clientes').then(Response => {
             this.setState({
                 clientes: Response.data
@@ -34,12 +34,12 @@ export default class Clientes extends Component {
         this.props.setForm(1);
     }
 
-    onClickRow(event,id){
+    onClickRow(event, id) {
         // console.log(id);
-        this.props.setData({type:"cliente", value:id})
-           
+        this.props.setData({ type: "cliente", value: id })
+
     }
-    
+
     render() {
         return (
             <div className="container">
@@ -57,7 +57,7 @@ export default class Clientes extends Component {
                         </TableHead>
                         <TableBody>
                             {this.state.clientes.map(row => (
-                                <TableRow key={row.id} className={this.props.clickable ? "rowHover":""} onClick={event => this.onClickRow(event,row.id)}>
+                                <TableRow key={row.id} className={this.props.clickable ? "rowHover" : ""} onClick={event => this.onClickRow(event, row.id)}>
                                     <TableCell component="th" scope="row" align="center">
                                         {row.nome}
                                     </TableCell>
@@ -65,9 +65,14 @@ export default class Clientes extends Component {
                                     <TableCell align="center">{row.cpf}</TableCell>
                                     <TableCell align="center">{row.email}</TableCell>
                                     <TableCell align="center">{row.data_nascimento}</TableCell>
-                                    <TableCell align="center"> <IconButton aria-label="Delete" onClick={() => this.deleteClick(row.id)}>
-                                        <DeleteIcon />
-                                    </IconButton></TableCell>
+                                    <TableCell align="center">
+                                        <IconButton aria-label="Delete" onClick={() => this.deleteClick(row.id)}>
+                                            <i class="material-icons">
+                                                border_color
+                                            </i>
+                                        </IconButton><IconButton aria-label="Delete" onClick={() => this.deleteClick(row.id)}>
+                                            <DeleteIcon />
+                                        </IconButton></TableCell>
                                 </TableRow>
                             ))}
 
@@ -91,7 +96,7 @@ export default class Clientes extends Component {
                     </TableFooter> */}
                     </Table>
                 </Paper>
-                <br/>
+                <br />
             </div >
         );
     }

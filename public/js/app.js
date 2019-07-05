@@ -69494,7 +69494,17 @@ var Clientes = function (_Component) {
                                     __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                                         __WEBPACK_IMPORTED_MODULE_6__material_ui_core_TableCell__["a" /* default */],
                                         { align: 'center' },
-                                        ' ',
+                                        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                                            __WEBPACK_IMPORTED_MODULE_10__material_ui_core_IconButton__["a" /* default */],
+                                            { 'aria-label': 'Delete', onClick: function onClick() {
+                                                    return _this3.deleteClick(row.id);
+                                                } },
+                                            __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                                                'i',
+                                                { 'class': 'material-icons' },
+                                                'border_color'
+                                            )
+                                        ),
                                         __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                                             __WEBPACK_IMPORTED_MODULE_10__material_ui_core_IconButton__["a" /* default */],
                                             { 'aria-label': 'Delete', onClick: function onClick() {
