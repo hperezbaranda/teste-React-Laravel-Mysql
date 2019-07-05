@@ -63,3 +63,8 @@
 .paper .title{
     margin-bottom: 15px;
 }
+
+.rowHover:hover{
+    cursor: pointer; 
+}
+

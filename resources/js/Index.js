@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Clientes from './components/Clientes'
+import Compras from './components/Compras'
 import Produtos from './components/Produtos'
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import ClientForm from './components/ClientForm';
 import Form from './components/Form';
 
 export default class Index extends Component {
@@ -37,12 +37,7 @@ export default class Index extends Component {
     }
     setForm(value){
         this.form = value
-        console.log(value);
-        // this.setState({
-        // //     form: value
-        //     otro:value
-        // })
-        
+        console.log("Value do Form "+value);
     }
          
     render() {
@@ -89,9 +84,29 @@ export default class Index extends Component {
                         </div>
                     </div>
                     <div className="row center">
-                        <Route path="/clientes" exact component={(props) => <Clientes {...props} setForm ={this.setForm.bind(this)}/>} />
-                        <Route path="/produtos" component={() => <Produtos setForm = {this.setForm.bind(this)}/>} />
-                        <Route path="/add" component={(props) => <Form {...props} wishform ={this.form}/>}/>
+                        <div className="card mx-auto Cliente-Card">
+                            <Link to="/compras" className="link" onClick={this.listElemet}>
+                                <div className="card-body">
+                                    <div className="row center">
+                                        <div className="col-md-6" >
+                                            <img src="images/clientes.png" alt="" width="80px" />
+                                        </div>
+                                        <div className="col-md-6 Cliente-Card-Info" >
+                                            <h1>Compras</h1>
+                                            <p>
+                                                Tudo a ver com Compras
+                                        </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="row center">
+                        <Route path="/clientes" exact component={(props) => <Clientes {...props} clickable={false} setData = {()=>{}} setForm = {this.setForm.bind(this)}/>} />
+                        <Route path="/produtos" component={(props) => <Produtos {...props} clickable={false} setData = {()=>{}} setForm = {this.setForm.bind(this)}/>} />
+                        <Route path="/compras" component={(props) => <Compras {...props} setForm = {this.setForm.bind(this)}/>} />
+                        <Route path="/add" component={(props) => <Form {...props} wishform = {this.form}/>}/>
                             
                     </div>
                     <div className="row center">

@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import InputMask from 'react-input-mask'
 
+import InputAdornment from '@material-ui/core/InputAdornment';
 import Container from '@material-ui/core/Container';
 import Axios from 'axios';
 
@@ -14,45 +15,44 @@ export default class ProductForm extends Component {
 
     constructor(props) {
         super(props);
-        this.onChangeData = this.onChangeData.bind(this);
-        this.onChangeCPF = this.onChangeCPF.bind(this);
+        this.onChangeCost = this.onChangeCost.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.unitChange = this.unitChange.bind(this);
         this.state = {
-            nascimento: '',
-            cpf:''
+            cost: '',
+            unidade: ''
         }
     }
 
-    onChangeData(data) {
-        this.setState({ nascimento: data.target.value })
-    }
-
-    onChangeCPF(data) {
-        this.setState({ cpf: data.target.value })
-    }
-
-    onSubmit(event){
+    onChangeCost(data) {
+        const num = data.target.value; 
+        console.log("valor real "+num);        
+        const formatvalue = Number((num / 100).toFixed(2));
+        console.log(formatvalue);
         
+        this.setState({ cost: data.target.value, ot:formatvalue })
+    }
+
+    onSubmit(event) {
+
         event.preventDefault();
         const data = new FormData(event.target);
-        Axios.post('/api/clientes',data)
-        .then(Response => {
-            this.myFormRef.reset();
+        Axios.post('/api/produtos', data)
+            .then(Response => {
+                this.myFormRef.reset();
 
-            this.setState({
-                nascimento:'',
-                cpf:''
+                this.setState({
+                    unidade: ''
+                })
+
+                this.props.history.push({
+                    pathname: '/',
+                    show: true
+                });
             })
-
-            this.props.history.push({
-                pathname:'/',
-                show:true
-            });            
-        })
-        console.log(this.stringifyFormData(data));
-        
-        
+            console.log(this.stringifyFormData(data));
     }
+
     stringifyFormData(fd) {
         const data = {};
           for (let key of fd.keys()) {
@@ -61,42 +61,43 @@ export default class ProductForm extends Component {
         return JSON.stringify(data, null, 2);
       }
 
+    unitChange(data) {
+        this.setState({
+            unidade: data.target.value
+        })
+    }
+
     render() {
         return (
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <div className={"paper"}>
-                    {/* <Avatar className={"Avatar"}>
-                        <LockOutlinedIcon />
-                    </Avatar> */}
                     <Typography className="title" component="h1" variant="h5">
                         Cadastrar Produtos
                     </Typography>
                     <form className={"form"} onSubmit={this.onSubmit} method="POST" ref={(form) => this.myFormRef = form} noValidate>
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={4}>
+                            <Grid item xs={12}>
                                 <TextField
                                     autoComplete="fname"
                                     name="nome"
                                     variant="outlined"
                                     required
                                     fullWidth
-                                    id="firstName"
+                                    id="Name"
                                     label="Nome"
-                                    ref={(n) => this.name = n}
                                     autoFocus
                                 />
                             </Grid>
-                            <Grid item xs={12} sm={8}>
+                            <Grid item xs={12}>
                                 <TextField
+                                    width="60px"
                                     variant="outlined"
-                                    required
                                     fullWidth
-                                    id="lastName"
-                                    label="Sobrenome"
-                                    name="sobrenome"
+                                    id="descricao"
+                                    label="Descricao"
+                                    name="descricao"
                                     autoComplete="lname"
-                                    ref={(ln) => this.lastname = ln}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -104,51 +105,45 @@ export default class ProductForm extends Component {
                                     variant="outlined"
                                     required
                                     fullWidth
-                                    id="email"
-                                    label="Email Address"
-                                    name="email"
-                                    autoComplete="email"
-                                    ref={(em) => this.email = em}
+                                    id="uniadade"
+                                    label="Unidade"
+                                    name="unidade"
+                                    autoComplete="unidade"
+                                    onChange={this.unitChange}
+                                    value={this.state.unidade.toUpperCase()}
                                 />
                             </Grid>
                             <Grid item xs={12}>
-
-                                <InputMask
-                                    mask="999.999.999-99"
-                                    onChange={this.onChangeCPF}
-                                    value={this.state.cpf}
-                                >
-                                    {() => <TextField
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        name="cpf"
-                                        label="CPF"
-                                        id="cpf"
-                                        autoComplete="cpf"
-                                        ref={(c) => this.cpf = c}
-                                    />}
-                                </InputMask>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="quantidade"
+                                    label="Quantidade"
+                                    name="quantidade"
+                                    autoComplete="quantidade"
+                                    InputProps={{
+                                        endAdornment: <InputAdornment position="end">{this.state.unidade}</InputAdornment>,
+                                    }}
+                                />
                             </Grid>
                             <Grid item xs={12}>
-                                <InputMask
-                                    mask="9999-99-99"
-                                    onChange={this.onChangeData}
-                                    value={this.state.nascimento}
-                                >
-                                    {() => <TextField
-                                        id="{attribute}"
-                                        label="Data de Nascimento"
-                                        name="data_nascimento"
+                                <TextField
+                                        id=""
+                                        label="Preço"
+                                        name="preco"
                                         margin="normal"
                                         type="text"
                                         variant="outlined"
                                         fullWidth
-                                        ref={(d) => this.birthday = d}
-                                    />}
-                                </InputMask>
+                                        // onChange={this.onChangeCost}
+                                        // value={this.state.cost}
+                                        InputProps={{
+                                            startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+                                        }}                                  
+                                />
+                                
                             </Grid>
-
                         </Grid>
                         <br />
                         <Button
@@ -157,22 +152,11 @@ export default class ProductForm extends Component {
                             variant="contained"
                             color="primary"
                             className={"submit"}
-                            //onClick={this.Submit}
                         >
                             Sign Up
                         </Button>
-                        {/* <Grid container justify="flex-end">
-                            <Grid item>
-                                <Link href="#" variant="body2">
-                                    Already have an account? Sign in
-                                </Link>
-                            </Grid>
-                        </Grid> */}
                     </form>
                 </div>
-                {/* <Box mt={5}>
-                    
-                </Box> */}
             </Container>
         )
     }

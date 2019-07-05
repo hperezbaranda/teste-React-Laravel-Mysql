@@ -1,16 +1,7 @@
 import React, { Component } from 'react'
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import InputMask from 'react-input-mask'
-
-import Container from '@material-ui/core/Container';
-import Axios from 'axios';
 import ClientForm from './ClientForm';
-import ProductForm from './ProdutForm';
+import ComprasForm from './ComprasForm';
+import ProdutForm from './ProdutForm';
 
 export default class Form extends Component {
 
@@ -22,13 +13,19 @@ export default class Form extends Component {
     }
     render() {
         const clientform = this.props.wishform;
-        console.log(this.props.wishform);
-        
+        let saida
+        if(clientform === 1){
+            saida = <ClientForm history={this.props.history}/>
+        }else if(clientform === 0){
+            saida = <ProdutForm history={this.props.history}/>
+        }
+        else{
+            saida = <ComprasForm history={this.props.history}/>
+        }
+       
         return (
             <div className="container">
-            {clientform
-                ? <ClientForm/>
-                : <ProductForm/>}  
+                {saida}             
             </div>
         )
     }

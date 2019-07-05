@@ -18,3 +18,4 @@ use Illuminate\Http\Request;
 // });
 Route::apiResource('produtos', 'ProdutosController');
 Route::apiResource('clientes', 'ClientesController');
+Route::apiResource('compras', 'ComprasController');

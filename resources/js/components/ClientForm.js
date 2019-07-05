@@ -137,14 +137,13 @@ export default class ClientForm extends Component {
                                     value={this.state.nascimento}
                                 >
                                     {() => <TextField
-                                        id="{attribute}"
+                                        id="data_nascimento"
                                         label="Data de Nascimento"
                                         name="data_nascimento"
                                         margin="normal"
                                         type="text"
                                         variant="outlined"
                                         fullWidth
-                                        ref={(d) => this.birthday = d}
                                     />}
                                 </InputMask>
                             </Grid>
