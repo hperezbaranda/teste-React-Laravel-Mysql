@@ -33,6 +33,12 @@ export default class Clientes extends Component {
         this.getData();
         this.props.setForm(1);
     }
+
+    onClickRow(event,id){
+        // console.log(id);
+        this.props.setData(id)
+           
+    }
     
     render() {
         return (
@@ -41,7 +47,7 @@ export default class Clientes extends Component {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>Nome</TableCell>
+                                <TableCell align="center">Nome</TableCell>
                                 <TableCell align="center">Sobrenome</TableCell>
                                 <TableCell align="center">CPF</TableCell>
                                 <TableCell align="center">Email</TableCell>
@@ -51,8 +57,8 @@ export default class Clientes extends Component {
                         </TableHead>
                         <TableBody>
                             {this.state.clientes.map(row => (
-                                <TableRow key={row.id}>
-                                    <TableCell component="th" scope="row">
+                                <TableRow key={row.id} className={this.props.clickable ? "rowHover":""} onClick={event => this.onClickRow(event,row.id)}>
+                                    <TableCell component="th" scope="row" align="center">
                                         {row.nome}
                                     </TableCell>
                                     <TableCell align="center">{row.sobrenome}</TableCell>

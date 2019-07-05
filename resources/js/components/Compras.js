@@ -11,35 +11,39 @@ import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-export default class Produtos extends Component {
+export default class Compras extends Component {
 
     constructor(props) {
         super(props)
 
         this.state = {
-            produtos: []
+            compras: []
         }
         this.deleteClick = this.deleteClick.bind(this);
         this.getData = this.getData.bind(this);
     }
-
     async getData(){
-        await Axios.get('/api/produtos/').then(Response => {
+        await Axios.get('/api/compras').then(Response => {          
             this.setState({
-                produtos: Response.data
-            })
+                compras: Response.data
+            });
         })
+        // console.log(this.tmpcompras);
+        
+        // this.setState({
+        //     compras: Response.data
+        // });
     }
- 
     componentDidMount() {
         this.getData();
-        this.props.setForm(0);
+        this.props.setForm(2);
     }
 
     onClickRow(event,id){
         console.log(id);
            
     }
+    
     render() {
         return (
             <div className="container">
@@ -47,25 +51,22 @@ export default class Produtos extends Component {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell align="center">Nome</TableCell>
-                                <TableCell align="center">Descrisao</TableCell>
-                                <TableCell align="center">Unidade</TableCell>
-                                <TableCell align="center">Quantidade</TableCell>
-                                <TableCell align="center">Preco</TableCell>
+                                <TableCell align="center">Cliente</TableCell>
+                                <TableCell align="center">Produto</TableCell>
+                                <TableCell align="center">Valor Total</TableCell>
+                                <TableCell align="center">Data da Compra</TableCell>
                                 <TableCell align="center">Acao</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {this.state.produtos.map(row => (
-                                <TableRow key={row.id} className={this.props.clickable ? "rowHover":""} onClick={event => this.onClickRow(event,row.id)}>
-                                    
+                            {this.state.compras.map(row => (
+                                <TableRow key={row.id} className="rowClient" onClick={event => this.onClickRow(event,row.id)}>
                                     <TableCell component="th" scope="row" align="center">
-                                        {row.nome}
+                                        {row.cliente_id}
                                     </TableCell>
-                                    <TableCell align="center">{row.descricao}</TableCell>
-                                    <TableCell align="center">{row.unidade}</TableCell>
-                                    <TableCell align="center">{row.quantidade}</TableCell>
-                                    <TableCell align="center">R$ {row.preco}</TableCell>
+                                    <TableCell align="center">{row.produto_id}</TableCell>
+                                    <TableCell align="center">0</TableCell>
+                                    <TableCell align="center">{row.created_at}</TableCell>
                                     <TableCell align="center"> <IconButton aria-label="Delete" onClick={() => this.deleteClick(row.id)}>
                                         <DeleteIcon />
                                     </IconButton></TableCell>
@@ -92,19 +93,19 @@ export default class Produtos extends Component {
                     </TableFooter> */}
                     </Table>
                 </Paper>
-                <br />
+                <br/>
             </div >
         );
     }
 
     async deleteClick(id) {
-      await Axios.delete(`/api/produtos/${id}`).then(Response => {
-            let filteredArray = this.state.produtos.filter(item => item.id !== id)
-            this.setState({ produtos: filteredArray });
+        await Axios.delete(`/api/compras/${id}`).then(Response => {
+            let filteredArray = this.state.compras.filter(item => item.id !== id)
+            this.setState({ compras: filteredArray });
         });
     }
 }
 
-if (document.getElementById('produtos')) {
-    ReactDOM.render(<Produtos />, document.getElementById('produtos'));
+if (document.getElementById('compras')) {
+    ReactDOM.render(<compras />, document.getElementById('compras'));
 }
