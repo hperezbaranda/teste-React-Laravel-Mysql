@@ -19,11 +19,17 @@ export default class ClientForm extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.state = {
             nascimento: '',
-            cpf:''
+            cpf:'',
+            daterror:false
         }
     }
 
     onChangeData(data) {
+        var date = new Date(data.target.value)
+        var today = new Date()
+        console.log(today.getFullYear()-date.getFullYear());
+        
+        console.log(date)
         this.setState({ nascimento: data.target.value })
     }
 
@@ -35,6 +41,7 @@ export default class ClientForm extends Component {
         
         event.preventDefault();
         const data = new FormData(event.target);
+        
         Axios.post('/api/clientes',data)
         .then(Response => {
             this.myFormRef.reset();
@@ -137,6 +144,7 @@ export default class ClientForm extends Component {
                                     value={this.state.nascimento}
                                 >
                                     {() => <TextField
+                                        error={this.state.daterror}
                                         id="data_nascimento"
                                         label="Data de Nascimento"
                                         name="data_nascimento"

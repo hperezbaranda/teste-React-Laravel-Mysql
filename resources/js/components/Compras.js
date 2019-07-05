@@ -40,8 +40,7 @@ export default class Compras extends Component {
     }
 
     onClickRow(event,id){
-        console.log(id);
-           
+        // Criar a edição
     }
     
     render() {

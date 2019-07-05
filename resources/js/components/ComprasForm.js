@@ -8,6 +8,7 @@ import ClientForm from './ClientForm';
 import ProductForm from './ProdutForm';
 import Clientes from './Clientes';
 import Produtos from './Produtos';
+import Axios from 'axios';
 
 export default class ComprasForm extends Component {
     constructor(props) {
@@ -15,44 +16,65 @@ export default class ComprasForm extends Component {
         this.state = {
             activeStep: 0,
         }
-        this.steps = ['Clientes', 'Produtos', 'Confirmar compra'];
-        this.getStepContent =this.getStepContent.bind(this);
+        this.steps = ['Clientes', 'Produtos'];
+        this.getStepContent = this.getStepContent.bind(this);
         this.handleNext = this.handleNext.bind(this);
         this.handleBack = this.handleBack.bind(this);
     }
-    setForm(value){
+    setForm(value) {
         this.form = value
-        console.log("Value do Form "+value);       
+        console.log("Value do Form " + value);
     }
-    setData(tdata){
-        console.log("Formulario Compras "+tdata);
-        
-        // this.setState({
-        //     data:tdata
-        // })
+    setData(tdata) {
+        var produto_id = []
+        // console.log("Formulario Compras "+tdata.type);
+        if (tdata.type === "cliente") {
+            this.setState({ activeStep: this.state.activeStep + 1, client_id: tdata.value });
+        } else {
+            this.setState({
+                produto_id: tdata.value
+            })
+
+            // console.log(tdata.value);
+
+        }
     }
-    
+
     getStepContent(stp) {
         switch (stp) {
             case 0:
-                return <Clientes setForm = {this.setForm.bind(this)} clickable={true}setData = {this.setData.bind(this)}/>;
+                return <Clientes setForm={this.setForm.bind(this)} clickable={true} setData={this.setData.bind(this)} />;
             case 1:
-                return <Produtos setForm = {this.setForm.bind(this)} clickable={true} setData = {this.setData.bind(this)}/>;
+                return <Produtos setForm={this.setForm.bind(this)} buy={true} clickable={true} setData={this.setData.bind(this)} />;
             case 2:
-                return <Clientes setForm = {this.setForm.bind(this)} setData = {this.setData.bind(this)}/>;
+                return 
             default:
                 throw new Error('Unknown step');
         }
     }
 
-    handleNext() {
-        this.setState({activeStep: this.state.activeStep + 1});
-        console.log(this.state.activeStep);
+    handleNext(event, actstep) {
+        if (actstep === this.steps.length - 1) {
+            var p = ""
+            for (p of this.state.produto_id) {
+                console.log(this.state.client_id);
+                var data = { "cliente_id": this.state.client_id, "produto_id": p.pdt }
+                console.log(data);
+
+                Axios.post('/api/compras', data).then(Response => {
+                    console.log(Response.data);
+                    this.setState({ activeStep: this.state.activeStep + 1 });
+                })
+            }
+        } else {
+            this.setState({ activeStep: this.state.activeStep + 1 });
+        }
     }
-    
+
     handleBack() {
-        this.setState({activeStep:this.state.activeStep - 1});
+        this.setState({ activeStep: this.state.activeStep - 1 });
     }
+
     render() {
         return (
             <div>
@@ -71,7 +93,7 @@ export default class ComprasForm extends Component {
                     {this.state.activeStep === this.steps.length ? (
                         <div>
                             <Typography >
-                                All steps completed - you&apos;re finished
+                                A compra foi feita
                             </Typography>
                             <Button onClick={this.handleReset}>
                                 Reset
@@ -87,8 +109,8 @@ export default class ComprasForm extends Component {
                                     <Button
                                         variant="contained"
                                         color="primary"
-                                        onClick={this.handleNext}
-                                    
+                                        onClick={(event) => this.handleNext(event, this.state.activeStep)}
+
                                     >
                                         {this.state.activeStep === this.steps.length - 1 ? 'Finish' : 'Next'}
                                     </Button>

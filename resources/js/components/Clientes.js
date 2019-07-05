@@ -36,7 +36,7 @@ export default class Clientes extends Component {
 
     onClickRow(event,id){
         // console.log(id);
-        this.props.setData(id)
+        this.props.setData({type:"cliente", value:id})
            
     }
     

@@ -70,7 +70,7 @@ export default class Index extends Component {
                                 <div className="card-body">
                                     <div className="row center">
                                         <div className="col-md-6" >
-                                            <img src="images/clientes.png" alt="" width="80px" />
+                                            <img src="images/product.jpg" alt="" width="80px" />
                                         </div>
                                         <div className="col-md-6 Cliente-Card-Info" >
                                             <h1>Produtos</h1>
@@ -89,7 +89,7 @@ export default class Index extends Component {
                                 <div className="card-body">
                                     <div className="row center">
                                         <div className="col-md-6" >
-                                            <img src="images/clientes.png" alt="" width="80px" />
+                                            <img src="images/buy.png" alt="" width="80px" />
                                         </div>
                                         <div className="col-md-6 Cliente-Card-Info" >
                                             <h1>Compras</h1>
@@ -104,7 +104,7 @@ export default class Index extends Component {
                     </div>
                     <div className="row center">
                         <Route path="/clientes" exact component={(props) => <Clientes {...props} clickable={false} setData = {()=>{}} setForm = {this.setForm.bind(this)}/>} />
-                        <Route path="/produtos" component={(props) => <Produtos {...props} clickable={false} setData = {()=>{}} setForm = {this.setForm.bind(this)}/>} />
+                        <Route path="/produtos" component={(props) => <Produtos {...props} buy={false} clickable={false} setData = {()=>{}} setForm = {this.setForm.bind(this)}/>} />
                         <Route path="/compras" component={(props) => <Compras {...props} setForm = {this.setForm.bind(this)}/>} />
                         <Route path="/add" component={(props) => <Form {...props} wishform = {this.form}/>}/>
                             

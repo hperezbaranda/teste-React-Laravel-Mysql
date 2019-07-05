@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Checkbox from '@material-ui/core/Checkbox';
 
 export default class Produtos extends Component {
 
@@ -17,30 +18,51 @@ export default class Produtos extends Component {
         super(props)
 
         this.state = {
-            produtos: []
+            produtos: [],
+            selected:[]
         }
         this.deleteClick = this.deleteClick.bind(this);
         this.getData = this.getData.bind(this);
     }
 
-    async getData(){
+    async getData() {
         await Axios.get('/api/produtos/').then(Response => {
             this.setState({
-                produtos: Response.data
+                produtos: Response.data,
+                select:false,
+                selected:[]
             })
         })
     }
- 
+
     componentDidMount() {
         this.getData();
         this.props.setForm(0);
     }
 
-    onClickRow(event,id){
-        console.log(id);
-           
+    onClickRow(event, id) {
+        var newselect ={pdt:id}
+        this.setState((prev,props)=>{
+           return{ selected:[...this.state.selected,newselect]}
+        })
+        if(this.state.selected.length === 0){
+            this.props.setData({type:"produto", value:[newselect]});
+        }else{
+            var send = this.state.selected
+            send.push(newselect)
+            this.props.setData({type:"produto", value:send});
+        }
+        // this.props.setData({type:"produto", value:this.state.selected});
+        // console.log("name "+JSON.stringify(this.state.selected));
     }
+
+    handleChange(event, name){
+        console.log(name)
+        // console.log("SELECTED "+this.state.selected);
+    }
+    
     render() {
+
         return (
             <div className="container">
                 <Paper className="root">
@@ -57,9 +79,17 @@ export default class Produtos extends Component {
                         </TableHead>
                         <TableBody>
                             {this.state.produtos.map(row => (
-                                <TableRow key={row.id} className={this.props.clickable ? "rowHover":""} onClick={event => this.onClickRow(event,row.id)}>
-                                    
+                                <TableRow key={row.id} className={this.props.clickable ? "rowHover" : ""} onClick={(event)=>this.onClickRow(event,row.id)} >
                                     <TableCell component="th" scope="row" align="center">
+                                    {this.props.buy &&
+                                        <div style={{float:"left"}}>
+                                        <Checkbox
+                                            value={row.id}
+                                            // checked={this.state.selected[row.id]}
+                                            // onChange={(event)=>this.handleChange(event,row.id)}
+                                        />
+                                        </div>
+                                    }
                                         {row.nome}
                                     </TableCell>
                                     <TableCell align="center">{row.descricao}</TableCell>
@@ -98,7 +128,7 @@ export default class Produtos extends Component {
     }
 
     async deleteClick(id) {
-      await Axios.delete(`/api/produtos/${id}`).then(Response => {
+        await Axios.delete(`/api/produtos/${id}`).then(Response => {
             let filteredArray = this.state.produtos.filter(item => item.id !== id)
             this.setState({ produtos: filteredArray });
         });

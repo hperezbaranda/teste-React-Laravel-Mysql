@@ -44835,7 +44835,7 @@ var Index = function (_Component) {
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'div',
                                             { className: 'col-md-6' },
-                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'images/clientes.png', alt: '', width: '80px' })
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'images/product.jpg', alt: '', width: '80px' })
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'div',
@@ -44874,7 +44874,7 @@ var Index = function (_Component) {
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'div',
                                             { className: 'col-md-6' },
-                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'images/clientes.png', alt: '', width: '80px' })
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'images/buy.png', alt: '', width: '80px' })
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'div',
@@ -44902,7 +44902,7 @@ var Index = function (_Component) {
                                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Clientes__["a" /* default */], _extends({}, props, { clickable: false, setData: function setData() {}, setForm: _this2.setForm.bind(_this2) }));
                             } }),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_router_dom__["c" /* Route */], { path: '/produtos', component: function component(props) {
-                                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Produtos__["a" /* default */], _extends({}, props, { clickable: false, setData: function setData() {}, setForm: _this2.setForm.bind(_this2) }));
+                                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Produtos__["a" /* default */], _extends({}, props, { buy: false, clickable: false, setData: function setData() {}, setForm: _this2.setForm.bind(_this2) }));
                             } }),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_router_dom__["c" /* Route */], { path: '/compras', component: function component(props) {
                                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Compras__["a" /* default */], _extends({}, props, { setForm: _this2.setForm.bind(_this2) }));
@@ -69403,7 +69403,7 @@ var Clientes = function (_Component) {
         key: 'onClickRow',
         value: function onClickRow(event, id) {
             // console.log(id);
-            this.props.setData(id);
+            this.props.setData({ type: "cliente", value: id });
         }
     }, {
         key: 'render',
@@ -77722,7 +77722,7 @@ var Compras = function (_Component) {
     }, {
         key: 'onClickRow',
         value: function onClickRow(event, id) {
-            console.log(id);
+            // Criar a edição
         }
     }, {
         key: 'render',
@@ -77886,9 +77886,12 @@ if (document.getElementById('compras')) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__material_ui_core_IconButton__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__material_ui_icons_Delete__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__material_ui_icons_Delete___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__material_ui_icons_Delete__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__material_ui_core_Checkbox__ = __webpack_require__(326);
 
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
@@ -77897,6 +77900,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -77920,7 +77924,8 @@ var Produtos = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Produtos.__proto__ || Object.getPrototypeOf(Produtos)).call(this, props));
 
         _this.state = {
-            produtos: []
+            produtos: [],
+            selected: []
         };
         _this.deleteClick = _this.deleteClick.bind(_this);
         _this.getData = _this.getData.bind(_this);
@@ -77940,7 +77945,9 @@ var Produtos = function (_Component) {
                                 _context.next = 2;
                                 return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/produtos/').then(function (Response) {
                                     _this2.setState({
-                                        produtos: Response.data
+                                        produtos: Response.data,
+                                        select: false,
+                                        selected: []
                                     });
                                 });
 
@@ -77967,12 +77974,32 @@ var Produtos = function (_Component) {
     }, {
         key: 'onClickRow',
         value: function onClickRow(event, id) {
-            console.log(id);
+            var _this3 = this;
+
+            var newselect = { pdt: id };
+            this.setState(function (prev, props) {
+                return { selected: [].concat(_toConsumableArray(_this3.state.selected), [newselect]) };
+            });
+            if (this.state.selected.length === 0) {
+                this.props.setData({ type: "produto", value: [newselect] });
+            } else {
+                var send = this.state.selected;
+                send.push(newselect);
+                this.props.setData({ type: "produto", value: send });
+            }
+            // this.props.setData({type:"produto", value:this.state.selected});
+            // console.log("name "+JSON.stringify(this.state.selected));
+        }
+    }, {
+        key: 'handleChange',
+        value: function handleChange(event, name) {
+            console.log(name);
+            // console.log("SELECTED "+this.state.selected);
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this4 = this;
 
             return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                 'div',
@@ -78027,12 +78054,21 @@ var Produtos = function (_Component) {
                             this.state.produtos.map(function (row) {
                                 return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                                     __WEBPACK_IMPORTED_MODULE_8__material_ui_core_TableRow__["a" /* default */],
-                                    { key: row.id, className: _this3.props.clickable ? "rowHover" : "", onClick: function onClick(event) {
-                                            return _this3.onClickRow(event, row.id);
+                                    { key: row.id, className: _this4.props.clickable ? "rowHover" : "", onClick: function onClick(event) {
+                                            return _this4.onClickRow(event, row.id);
                                         } },
                                     __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                                         __WEBPACK_IMPORTED_MODULE_6__material_ui_core_TableCell__["a" /* default */],
                                         { component: 'th', scope: 'row', align: 'center' },
+                                        _this4.props.buy && __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                                            'div',
+                                            { style: { float: "left" } },
+                                            __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_12__material_ui_core_Checkbox__["a" /* default */], {
+                                                value: row.id
+                                                // checked={this.state.selected[row.id]}
+                                                // onChange={(event)=>this.handleChange(event,row.id)}
+                                            })
+                                        ),
                                         row.nome
                                     ),
                                     __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
@@ -78063,7 +78099,7 @@ var Produtos = function (_Component) {
                                         __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                                             __WEBPACK_IMPORTED_MODULE_10__material_ui_core_IconButton__["a" /* default */],
                                             { 'aria-label': 'Delete', onClick: function onClick() {
-                                                    return _this3.deleteClick(row.id);
+                                                    return _this4.deleteClick(row.id);
                                                 } },
                                             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__material_ui_icons_Delete___default.a, null)
                                         )
@@ -78080,7 +78116,7 @@ var Produtos = function (_Component) {
         key: 'deleteClick',
         value: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(id) {
-                var _this4 = this;
+                var _this5 = this;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
@@ -78088,10 +78124,10 @@ var Produtos = function (_Component) {
                             case 0:
                                 _context2.next = 2;
                                 return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('/api/produtos/' + id).then(function (Response) {
-                                    var filteredArray = _this4.state.produtos.filter(function (item) {
+                                    var filteredArray = _this5.state.produtos.filter(function (item) {
                                         return item.id !== id;
                                     });
-                                    _this4.setState({ produtos: filteredArray });
+                                    _this5.setState({ produtos: filteredArray });
                                 });
 
                             case 2:
@@ -88957,7 +88993,8 @@ var ClientForm = function (_Component) {
         _this.onSubmit = _this.onSubmit.bind(_this);
         _this.state = {
             nascimento: '',
-            cpf: ''
+            cpf: '',
+            daterror: false
         };
         return _this;
     }
@@ -88965,6 +89002,11 @@ var ClientForm = function (_Component) {
     _createClass(ClientForm, [{
         key: 'onChangeData',
         value: function onChangeData(data) {
+            var date = new Date(data.target.value);
+            var today = new Date();
+            console.log(today.getFullYear() - date.getFullYear());
+
+            console.log(date);
             this.setState({ nascimento: data.target.value });
         }
     }, {
@@ -88979,6 +89021,7 @@ var ClientForm = function (_Component) {
 
             event.preventDefault();
             var data = new FormData(event.target);
+
             __WEBPACK_IMPORTED_MODULE_9_axios___default.a.post('/api/clientes', data).then(function (Response) {
                 _this2.myFormRef.reset();
 
@@ -89137,6 +89180,7 @@ var ClientForm = function (_Component) {
                                     },
                                     function () {
                                         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__material_ui_core_TextField__["a" /* default */], {
+                                            error: _this3.state.daterror,
                                             id: 'data_nascimento',
                                             label: 'Data de Nascimento',
                                             name: 'data_nascimento',
@@ -89620,6 +89664,8 @@ var InputAdornment = __WEBPACK_IMPORTED_MODULE_2_react___default.a.forwardRef(fu
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ProdutForm__ = __webpack_require__(305);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Clientes__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Produtos__ = __webpack_require__(231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_axios__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_axios__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -89629,6 +89675,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -89652,7 +89699,7 @@ var ComprasForm = function (_Component) {
         _this.state = {
             activeStep: 0
         };
-        _this.steps = ['Clientes', 'Produtos', 'Confirmar compra'];
+        _this.steps = ['Clientes', 'Produtos'];
         _this.getStepContent = _this.getStepContent.bind(_this);
         _this.handleNext = _this.handleNext.bind(_this);
         _this.handleBack = _this.handleBack.bind(_this);
@@ -89668,11 +89715,17 @@ var ComprasForm = function (_Component) {
     }, {
         key: 'setData',
         value: function setData(tdata) {
-            console.log("Formulario Compras " + tdata);
+            var produto_id = [];
+            // console.log("Formulario Compras "+tdata.type);
+            if (tdata.type === "cliente") {
+                this.setState({ activeStep: this.state.activeStep + 1, client_id: tdata.value });
+            } else {
+                this.setState({
+                    produto_id: tdata.value
+                });
 
-            // this.setState({
-            //     data:tdata
-            // })
+                // console.log(tdata.value);
+            }
         }
     }, {
         key: 'getStepContent',
@@ -89681,18 +89734,54 @@ var ComprasForm = function (_Component) {
                 case 0:
                     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__Clientes__["a" /* default */], { setForm: this.setForm.bind(this), clickable: true, setData: this.setData.bind(this) });
                 case 1:
-                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__Produtos__["a" /* default */], { setForm: this.setForm.bind(this), clickable: true, setData: this.setData.bind(this) });
+                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__Produtos__["a" /* default */], { setForm: this.setForm.bind(this), buy: true, clickable: true, setData: this.setData.bind(this) });
                 case 2:
-                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__Clientes__["a" /* default */], { setForm: this.setForm.bind(this), setData: this.setData.bind(this) });
+                    return;
                 default:
                     throw new Error('Unknown step');
             }
         }
     }, {
         key: 'handleNext',
-        value: function handleNext() {
-            this.setState({ activeStep: this.state.activeStep + 1 });
-            console.log(this.state.activeStep);
+        value: function handleNext(event, actstep) {
+            var _this2 = this;
+
+            if (actstep === this.steps.length - 1) {
+                var p = "";
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    for (var _iterator = this.state.produto_id[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        p = _step.value;
+
+                        console.log(this.state.client_id);
+                        var data = { "cliente_id": this.state.client_id, "produto_id": p.pdt };
+                        console.log(data);
+
+                        __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/api/compras', data).then(function (Response) {
+                            console.log(Response.data);
+                            _this2.setState({ activeStep: _this2.state.activeStep + 1 });
+                        });
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+            } else {
+                this.setState({ activeStep: this.state.activeStep + 1 });
+            }
         }
     }, {
         key: 'handleBack',
@@ -89702,6 +89791,8 @@ var ComprasForm = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
+            var _this3 = this;
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 null,
@@ -89731,7 +89822,7 @@ var ComprasForm = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             __WEBPACK_IMPORTED_MODULE_5__material_ui_core_Typography__["a" /* default */],
                             null,
-                            'All steps completed - you\'re finished'
+                            'A compra foi feita'
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             __WEBPACK_IMPORTED_MODULE_4__material_ui_core_Button__["a" /* default */],
@@ -89759,7 +89850,9 @@ var ComprasForm = function (_Component) {
                                 {
                                     variant: 'contained',
                                     color: 'primary',
-                                    onClick: this.handleNext
+                                    onClick: function onClick(event) {
+                                        return _this3.handleNext(event, _this3.state.activeStep);
+                                    }
 
                                 },
                                 this.state.activeStep === this.steps.length - 1 ? 'Finish' : 'Next'
@@ -90672,6 +90765,545 @@ var StepIcon = __WEBPACK_IMPORTED_MODULE_0_react___default.a.forwardRef(function
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1__createSvgIcon__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("path", {
   d: "M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"
 }), 'Warning'));
+
+/***/ }),
+/* 326 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Checkbox__ = __webpack_require__(327);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__Checkbox__["a"]; });
+
+
+/***/ }),
+/* 327 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export styles */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_extends__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_objectWithoutProperties__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_objectWithoutProperties___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_objectWithoutProperties__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_clsx__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__internal_SwitchBase__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__internal_svg_icons_CheckBoxOutlineBlank__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__internal_svg_icons_CheckBox__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__styles_colorManipulator__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__internal_svg_icons_IndeterminateCheckBox__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_helpers__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__styles_withStyles__ = __webpack_require__(5);
+
+
+
+
+
+
+
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      color: theme.palette.text.secondary
+    },
+
+    /* Pseudo-class applied to the root element if `checked={true}`. */
+    checked: {},
+
+    /* Pseudo-class applied to the root element if `disabled={true}`. */
+    disabled: {},
+
+    /* Pseudo-class applied to the root element if `indeterminate={true}`. */
+    indeterminate: {},
+
+    /* Styles applied to the root element if `color="primary"`. */
+    colorPrimary: {
+      '&$checked': {
+        color: theme.palette.primary.main,
+        '&:hover': {
+          backgroundColor: Object(__WEBPACK_IMPORTED_MODULE_8__styles_colorManipulator__["b" /* fade */])(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: 'transparent'
+          }
+        }
+      },
+      '&$disabled': {
+        color: theme.palette.action.disabled
+      }
+    },
+
+    /* Styles applied to the root element if `color="secondary"`. */
+    colorSecondary: {
+      '&$checked': {
+        color: theme.palette.secondary.main,
+        '&:hover': {
+          backgroundColor: Object(__WEBPACK_IMPORTED_MODULE_8__styles_colorManipulator__["b" /* fade */])(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: 'transparent'
+          }
+        }
+      },
+      '&$disabled': {
+        color: theme.palette.action.disabled
+      }
+    }
+  };
+};
+var defaultCheckedIcon = __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__internal_svg_icons_CheckBox__["a" /* default */], null);
+var defaultIcon = __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__internal_svg_icons_CheckBoxOutlineBlank__["a" /* default */], null);
+var defaultIndeterminateIcon = __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__internal_svg_icons_IndeterminateCheckBox__["a" /* default */], null);
+var Checkbox = __WEBPACK_IMPORTED_MODULE_2_react___default.a.forwardRef(function Checkbox(props, ref) {
+  var _props$checkedIcon = props.checkedIcon,
+      checkedIcon = _props$checkedIcon === void 0 ? defaultCheckedIcon : _props$checkedIcon,
+      classes = props.classes,
+      _props$color = props.color,
+      color = _props$color === void 0 ? 'secondary' : _props$color,
+      _props$icon = props.icon,
+      icon = _props$icon === void 0 ? defaultIcon : _props$icon,
+      _props$indeterminate = props.indeterminate,
+      indeterminate = _props$indeterminate === void 0 ? false : _props$indeterminate,
+      _props$indeterminateI = props.indeterminateIcon,
+      indeterminateIcon = _props$indeterminateI === void 0 ? defaultIndeterminateIcon : _props$indeterminateI,
+      inputProps = props.inputProps,
+      other = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_objectWithoutProperties___default()(props, ["checkedIcon", "classes", "color", "icon", "indeterminate", "indeterminateIcon", "inputProps"]);
+
+  return __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__internal_SwitchBase__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_extends___default()({
+    type: "checkbox",
+    checkedIcon: indeterminate ? indeterminateIcon : checkedIcon,
+    classes: {
+      root: Object(__WEBPACK_IMPORTED_MODULE_4_clsx__["a" /* default */])(classes.root, classes["color".concat(Object(__WEBPACK_IMPORTED_MODULE_10__utils_helpers__["a" /* capitalize */])(color))], indeterminate && classes.indeterminate),
+      checked: classes.checked,
+      disabled: classes.disabled
+    },
+    color: color,
+    inputProps: __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_extends___default()({
+      'data-indeterminate': indeterminate
+    }, inputProps),
+    icon: indeterminate ? indeterminateIcon : icon,
+    ref: ref
+  }, other));
+});
+ true ? Checkbox.propTypes = {
+  /**
+   * If `true`, the component is checked.
+   */
+  checked: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.bool,
+
+  /**
+   * The icon to display when the component is checked.
+   */
+  checkedIcon: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.node,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.object.isRequired,
+
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.oneOf(['primary', 'secondary', 'default']),
+
+  /**
+   * If `true`, the switch will be disabled.
+   */
+  disabled: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.bool,
+
+  /**
+   * If `true`, the ripple effect will be disabled.
+   */
+  disableRipple: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.bool,
+
+  /**
+   * The icon to display when the component is unchecked.
+   */
+  icon: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.node,
+
+  /**
+   * The id of the `input` element.
+   */
+  id: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.string,
+
+  /**
+   * If `true`, the component appears indeterminate.
+   * This does not set the native input element to indeterminate due
+   * to inconsistent behavior across browsers.
+   * However, we set a `data-indeterminate` attribute on the input.
+   */
+  indeterminate: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.bool,
+
+  /**
+   * The icon to display when the component is indeterminate.
+   */
+  indeterminateIcon: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.node,
+
+  /**
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   */
+  inputProps: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.object,
+
+  /**
+   * This property can be used to pass a ref callback to the `input` element.
+   */
+  inputRef: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.oneOfType([__WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.func, __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.object]),
+
+  /**
+   * Callback fired when the state is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.checked`.
+   * @param {boolean} checked The `checked` value of the switch
+   */
+  onChange: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.func,
+
+  /**
+   * The input component property `type`.
+   */
+  type: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.string,
+
+  /**
+   * The value of the component. The DOM API casts this to a string.
+   */
+  value: __WEBPACK_IMPORTED_MODULE_3_prop_types___default.a.any
+} : void 0;
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_11__styles_withStyles__["a" /* default */])(styles, {
+  name: 'MuiCheckbox'
+})(Checkbox));
+
+/***/ }),
+/* 328 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export styles */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_extends__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_slicedToArray__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_slicedToArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_slicedToArray__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_objectWithoutProperties__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_objectWithoutProperties___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_objectWithoutProperties__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_prop_types__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_clsx__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__FormControl_withFormControlContext__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__styles_withStyles__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__IconButton__ = __webpack_require__(52);
+
+
+
+
+
+
+
+
+
+var styles = {
+  root: {
+    padding: 9
+  },
+  checked: {},
+  disabled: {},
+  input: {
+    cursor: 'inherit',
+    position: 'absolute',
+    opacity: 0,
+    width: '100%',
+    height: '100%',
+    top: 0,
+    left: 0,
+    margin: 0,
+    padding: 0
+  }
+};
+/**
+ * @ignore - internal component.
+ */
+
+var SwitchBase = __WEBPACK_IMPORTED_MODULE_3_react___default.a.forwardRef(function SwitchBase(props, ref) {
+  var autoFocus = props.autoFocus,
+      checkedProp = props.checked,
+      checkedIcon = props.checkedIcon,
+      classes = props.classes,
+      classNameProp = props.className,
+      defaultChecked = props.defaultChecked,
+      disabledProp = props.disabled,
+      icon = props.icon,
+      id = props.id,
+      inputProps = props.inputProps,
+      inputRef = props.inputRef,
+      muiFormControl = props.muiFormControl,
+      name = props.name,
+      onBlur = props.onBlur,
+      onChange = props.onChange,
+      onFocus = props.onFocus,
+      readOnly = props.readOnly,
+      required = props.required,
+      tabIndex = props.tabIndex,
+      type = props.type,
+      value = props.value,
+      other = __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_objectWithoutProperties___default()(props, ["autoFocus", "checked", "checkedIcon", "classes", "className", "defaultChecked", "disabled", "icon", "id", "inputProps", "inputRef", "muiFormControl", "name", "onBlur", "onChange", "onFocus", "readOnly", "required", "tabIndex", "type", "value"]);
+
+  var _React$useRef = __WEBPACK_IMPORTED_MODULE_3_react___default.a.useRef(checkedProp != null),
+      isControlled = _React$useRef.current;
+
+  var _React$useState = __WEBPACK_IMPORTED_MODULE_3_react___default.a.useState(Boolean(defaultChecked)),
+      _React$useState2 = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_slicedToArray___default()(_React$useState, 2),
+      checkedState = _React$useState2[0],
+      setCheckedState = _React$useState2[1];
+
+  var handleFocus = function handleFocus(event) {
+    if (onFocus) {
+      onFocus(event);
+    }
+
+    if (muiFormControl && muiFormControl.onFocus) {
+      muiFormControl.onFocus(event);
+    }
+  };
+
+  var handleBlur = function handleBlur(event) {
+    if (onBlur) {
+      onBlur(event);
+    }
+
+    if (muiFormControl && muiFormControl.onBlur) {
+      muiFormControl.onBlur(event);
+    }
+  };
+
+  var handleInputChange = function handleInputChange(event) {
+    var checked = event.target.checked;
+
+    if (!isControlled) {
+      setCheckedState(checked);
+    }
+
+    if (onChange) {
+      onChange(event, checked);
+    }
+  };
+
+  var disabled = disabledProp;
+
+  if (muiFormControl) {
+    if (typeof disabled === 'undefined') {
+      disabled = muiFormControl.disabled;
+    }
+  }
+
+  var checked = isControlled ? checkedProp : checkedState;
+  var hasLabelFor = type === 'checkbox' || type === 'radio';
+  return __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__IconButton__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_extends___default()({
+    component: "span",
+    className: Object(__WEBPACK_IMPORTED_MODULE_5_clsx__["a" /* default */])(classes.root, classNameProp, checked && classes.checked, disabled && classes.disabled),
+    disabled: disabled,
+    tabIndex: null,
+    role: undefined,
+    onFocus: handleFocus,
+    onBlur: handleBlur,
+    ref: ref
+  }, other), checked ? checkedIcon : icon, __WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement("input", __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_extends___default()({
+    autoFocus: autoFocus,
+    checked: checkedProp,
+    defaultChecked: defaultChecked,
+    className: classes.input,
+    disabled: disabled,
+    id: hasLabelFor && id,
+    name: name,
+    onChange: handleInputChange,
+    readOnly: readOnly,
+    ref: inputRef,
+    required: required,
+    tabIndex: tabIndex,
+    type: type,
+    value: value
+  }, inputProps)));
+}); // NB: If changed, please update Checkbox, Switch and Radio
+// so that the API documentation is updated.
+
+ true ? SwitchBase.propTypes = {
+  /**
+   * If `true`, the `input` element will be focused during the first mount.
+   */
+  autoFocus: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.bool,
+
+  /**
+   * If `true`, the component is checked.
+   */
+  checked: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.bool,
+
+  /**
+   * The icon to display when the component is checked.
+   */
+  checkedIcon: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.node.isRequired,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.string,
+
+  /**
+   * @ignore
+   */
+  defaultChecked: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.bool,
+
+  /**
+   * If `true`, the switch will be disabled.
+   */
+  disabled: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.bool,
+
+  /**
+   * The icon to display when the component is unchecked.
+   */
+  icon: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.node.isRequired,
+
+  /**
+   * The id of the `input` element.
+   */
+  id: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.string,
+
+  /**
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   */
+  inputProps: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.object,
+
+  /**
+   * This property can be used to pass a ref callback to the `input` element.
+   */
+  inputRef: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.oneOfType([__WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.func, __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.object]),
+
+  /**
+   * @ignore
+   */
+  muiFormControl: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.object,
+
+  /*
+   * @ignore
+   */
+  name: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.string,
+
+  /**
+   * @ignore
+   */
+  onBlur: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.func,
+
+  /**
+   * Callback fired when the state is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.checked`.
+   * @param {boolean} checked The `checked` value of the switch
+   */
+  onChange: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.func,
+
+  /**
+   * @ignore
+   */
+  onFocus: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.func,
+
+  /**
+   * It prevents the user from changing the value of the field
+   * (not from interacting with the field).
+   */
+  readOnly: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.bool,
+
+  /**
+   * If `true`, the `input` element will be required.
+   */
+  required: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.bool,
+
+  /**
+   * @ignore
+   */
+  tabIndex: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.oneOfType([__WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.number, __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.string]),
+
+  /**
+   * The input component property `type`.
+   */
+  type: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.string.isRequired,
+
+  /**
+   * The value of the component.
+   */
+  value: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.any
+} : void 0;
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_7__styles_withStyles__["a" /* default */])(styles, {
+  name: 'PrivateSwitchBase'
+})(Object(__WEBPACK_IMPORTED_MODULE_6__FormControl_withFormControlContext__["a" /* default */])(SwitchBase)));
+
+/***/ }),
+/* 329 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createSvgIcon__ = __webpack_require__(293);
+
+
+/**
+ * @ignore - internal component.
+ */
+
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1__createSvgIcon__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("path", {
+  d: "M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+}), 'CheckBoxOutlineBlank'));
+
+/***/ }),
+/* 330 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createSvgIcon__ = __webpack_require__(293);
+
+
+/**
+ * @ignore - internal component.
+ */
+
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1__createSvgIcon__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("path", {
+  d: "M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+}), 'CheckBox'));
+
+/***/ }),
+/* 331 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createSvgIcon__ = __webpack_require__(293);
+
+
+/**
+ * @ignore - internal component.
+ */
+
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1__createSvgIcon__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("path", {
+  d: "M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"
+}), 'IndeterminateCheckBox'));
 
 /***/ })
 /******/ ]);
