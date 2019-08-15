@@ -1,5 +1,3 @@
-Teste de seleção para Dinni Soluções
-
 
 Hector, por favor siga as instruções a seguir para realizar o teste.
 
@@ -91,10 +89,3 @@ Para o front-end gostaríamos que você utilizasse um dos frameworks: Vue.js, An
  
  Como trabalhamos sempre em equipe e com projetos complexos, é interessante utilizar o github para organizar o seu trabalho, assim que finalizar uma atividade, crie um commit e atualize o repositório. Assim você evita o risco de perder o trabalho já realizado e nos permitirá acompanhá-lo.
  
- 6) Fique à vontade para solicitar ajuda se achar necessário.
- 
- Você terá 1 (uma) semana para desenvolver a aplicação, siga os passos sugeridos e nos envie o código mesmo se não conseguir realizar todos os passos. Sabemos que boa parte pode ser novidade para você, mas essa é uma maneira também de você conhecer um pouco como deve ser o seu trabalho caso se una à nossa equipe.
- 
- Bom trabalho!
- 
- Eduardo (eduardo@dinnisoft.com.br)
